@@ -71,9 +71,9 @@ public class ProductController {
 	
 	
 	
-	//http://localhost:7070/customers/v1.0/filters/1?fields=name,cost
+	//http://localhost:7070/products/v1.0/filters/1?fields=name,cost
 		@GetMapping({"/v1.0/filters", "/v1.1/filters"})
-	    public String getFilteredCustomer(@RequestParam(name = "fields", required = false) 
+	    public String getFilteredProduct(@RequestParam(name = "fields", required = false) 
 	    String fields) 
 		{
 
