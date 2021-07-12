@@ -36,4 +36,8 @@ public class LocationService {
 	    	
 	    	return status;
 	    }
+	    //save 
+	    public Location updateLocation(Location location) {
+	    	return this.locationRepository.save(location);
+	    }
 }

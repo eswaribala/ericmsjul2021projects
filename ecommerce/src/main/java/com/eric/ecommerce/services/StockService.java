@@ -48,5 +48,15 @@ public class StockService {
     	
     	return status;
     }
-    
+  public Stock updateStock(Stock stock,long productId,long locationId) {
+    	
+    	Product productObj=this.productService.getProductById(productId);
+    	Location locationObj=this.locationService.getLocationById(locationId);
+    	if((productObj!=null)&&(locationObj!=null)) {
+    		stock.setProduct(productObj);
+            stock.setLocation(locationObj);    		
+    	}
+    	
+    	return this.stockRepository.save(stock);
+    }
 }

@@ -37,4 +37,8 @@ public class ProductService {
     	return status;
     }
     
+  //save 
+    public Product updateProduct(Product product) {
+    	return this.productRepository.save(product);
+    }
 }
