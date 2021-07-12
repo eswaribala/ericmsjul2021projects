@@ -12,11 +12,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 //import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.eric.ecommerce.models.Product;
 import com.eric.ecommerce.services.ProductService;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.bohnman.squiggly.Squiggly;
+import com.github.bohnman.squiggly.util.SquigglyUtils;
 @RestController
 @RequestMapping("/products")
 public class ProductController {
@@ -64,4 +68,19 @@ public class ProductController {
     	else
     		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Product Not Added");
     }
+	
+	
+	
+	//http://localhost:7070/customers/v1.0/filters/1?fields=name,cost
+		@GetMapping({"/v1.0/filters", "/v1.1/filters"})
+	    public String getFilteredCustomer(@RequestParam(name = "fields", required = false) 
+	    String fields) 
+		{
+
+			List<Product> productList = fetchAllProducts();
+			ObjectMapper mapper = Squiggly.init(new ObjectMapper(), fields);  
+			return SquigglyUtils.stringify(mapper, productList);
+			
+	    }
+
 }
