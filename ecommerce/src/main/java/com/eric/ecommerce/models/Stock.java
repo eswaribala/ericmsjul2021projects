@@ -15,6 +15,8 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.persistence.ForeignKey;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,16 +31,20 @@ public class Stock {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="Stock_Id")
+	@ApiModelProperty(position = 1, required = true, hidden=true, notes = "Auto generated column")
+
 	private long stockId;
 	@Column(name="Qty")
 	private long qty;
 	@ManyToOne(cascade = CascadeType.MERGE,fetch = FetchType.LAZY)
 	@JoinColumn(foreignKey = @ForeignKey(name = "Product_Id"), name = "Product_Id")
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	@ApiModelProperty(position = 1, required = true, hidden=true, notes = "Auto generated column")
 	private Product product;
 	@ManyToOne(cascade = CascadeType.MERGE,fetch = FetchType.LAZY)
 	@JoinColumn(foreignKey = @ForeignKey(name = "Location_Id"), name = "Location_Id")
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	@ApiModelProperty(position = 1, required = true, hidden=true, notes = "Auto generated column")
 	private Location location;
 
 }
