@@ -3,6 +3,8 @@ package com.eric.ecommerce.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,9 +23,15 @@ import com.eric.ecommerce.services.ProductService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.bohnman.squiggly.Squiggly;
 import com.github.bohnman.squiggly.util.SquigglyUtils;
+
+import lombok.extern.slf4j.Slf4j;
 @RestController
 @RequestMapping("/products")
+@RefreshScope
+@Slf4j
 public class ProductController {
+	@Value("${message}")
+	private String message;
     @Autowired 
 	private ProductService productService;
 	
@@ -39,6 +47,7 @@ public class ProductController {
     }
 	@GetMapping({"/v1.0", "/v1.1"})
 	public List<Product> fetchAllProducts(){
+		log.info(message);
 		return this.productService.getAllProducts();
 	}
 	
