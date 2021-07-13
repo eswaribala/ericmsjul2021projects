@@ -112,14 +112,8 @@
     	</exclusion>
     </exclusions>  -->
 </dependency>
-
-
-
-
-
-
 <!-- cloud bus -->
-			 <dependency>
+	    <dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-bus</artifactId>
 		</dependency>
@@ -127,7 +121,7 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-stream-rabbit</artifactId>
 		</dependency>
-<!-- config client -->
+        <!-- config client -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-config</artifactId>
