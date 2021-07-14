@@ -20,7 +20,12 @@ services:
       dockerfile: dockerfile
     depends_on:
       - mysql
-      
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
     ports:
       - 7074:7070
     volumes:
