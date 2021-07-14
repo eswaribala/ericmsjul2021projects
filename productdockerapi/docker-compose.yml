@@ -1,0 +1,27 @@
+version: '3.9'
+
+services:
+  mysql:
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=ericecommdb
+    volumes:
+      - /data/mysql
+    healthcheck:        
+        interval: 30s
+        timeout: 10s
+        retries: 5
+  
+  product-app:
+    image: product-appv1
+    build:
+      context: ./
+      dockerfile: dockerfile
+    depends_on:
+      - mysql
+      
+    ports:
+      - 7074:7070
+    volumes:
+      - /data/compose-app
