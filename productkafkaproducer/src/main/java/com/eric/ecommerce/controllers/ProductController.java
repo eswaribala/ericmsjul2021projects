@@ -82,5 +82,15 @@ public class ProductController {
 			return SquigglyUtils.stringify(mapper, productList);
 			
 	    }
+		
+		
+		@GetMapping({"/v1.0/publish/{productId}", "/v1.1/publish/{productId}"})
+		public ResponseEntity<?> publishProductById(@PathVariable("productId") long productId) {
+			if(this.productService.publishProductDetails(productId))
+				return ResponseEntity.status(HttpStatus.OK).body("Product Published");
+			else
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Product not Published");
+			
+		}
 
 }
