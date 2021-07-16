@@ -1,6 +1,7 @@
 package com.eric.ecommerce.services;
 
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -16,8 +17,8 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Slf4j
 public class StockService {
-  //  @Autowired 
-	//private StockRepository stockRepository;
+    @Autowired 
+	private StockRepository stockRepository;
 
     
     @KafkaListener(topics = "${product.topic.name}", 
@@ -28,8 +29,15 @@ public class StockService {
 		Gson gson=new Gson();
 		
 		Product product= gson.fromJson(message, Product.class);
+		
 		  
 		log.info(product.getName());
+		
+		Stock stock=new Stock();
+		stock.setStockId(new Random().nextInt(100000));
+		stock.setQty(new Random().nextInt(1000));
+		stock.setProduct(product);
+		stockRepository.save(stock);
 	}
 
     
