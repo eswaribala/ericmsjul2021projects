@@ -25,11 +25,11 @@ public class StockService {
     public void consume(String message) {
 		log.info(String.format("Message recieved -> %s", message));
 		
-		//Gson gson=new Gson();
+		Gson gson=new Gson();
 		
-		//Product product= gson.fromJson(message, Product.class);
+		Product product= gson.fromJson(message, Product.class);
 		  
-		//log.info(product.getName());
+		log.info(product.getName());
 	}
 
     

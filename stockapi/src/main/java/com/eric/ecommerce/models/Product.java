@@ -17,9 +17,9 @@ public class Product {
 	private long productId;
 	
 	private String name;
-	@DateTimeFormat(iso = ISO.DATE)
+	//@DateTimeFormat(iso = ISO.DATE)
 
-	private LocalDate dop;
+	private String dop;
 	
 	private long cost;
 
