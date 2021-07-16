@@ -38,7 +38,7 @@ public class SwaggerConfiguration {
                 .select()
                 .apis(RequestHandlerSelectors
                         .basePackage("com.eric.ecommerce"))
-                .paths(PathSelectors.regex("/stocks/v1.0.*"))
+                .paths(PathSelectors.regex("/stocks.*"))
                 .build()
                 .apiInfo(getApiInfo())
                 .forCodeGeneration(true)
@@ -52,30 +52,10 @@ public class SwaggerConfiguration {
                 .securitySchemes(Lists.newArrayList(apiKey()))
                 .useDefaultResponseMessages(false);
     }
-    @Bean
-    public Docket apiDocketstockv11() {
-        return new Docket(DocumentationType.SWAGGER_2)
-        		.groupName("stock-api-1.1")
-                .select()
-                .apis(RequestHandlerSelectors
-                        .basePackage("com.eric.ecommerce"))
-                .paths(PathSelectors.regex("/stocks/v1.1.*"))
-                .build()
-                .apiInfo(getApiInfo())
-                .forCodeGeneration(true)
-                .genericModelSubstitutes(ResponseEntity.class)
-                .ignoredParameterTypes(Pageable.class)
-                .ignoredParameterTypes(java.sql.Date.class)
-                .directModelSubstitute(java.time.LocalDate.class, java.sql.Date.class)
-                .directModelSubstitute(java.time.ZonedDateTime.class, Date.class)
-                .directModelSubstitute(java.time.LocalDateTime.class, Date.class)
-                .securityContexts(Lists.newArrayList(securityContext()))
-                .securitySchemes(Lists.newArrayList(apiKey()))
-                .useDefaultResponseMessages(false);
-    }
+    
     private ApiInfo getApiInfo() {
         return new ApiInfo(
-                "Ecommerce API",
+                "Stock API",
                 "App to demonstrate API Documentation",
                 "0.0.1-SNAPSHOT",
                 "Terms of Service",

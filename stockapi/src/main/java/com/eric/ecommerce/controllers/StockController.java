@@ -15,13 +15,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.eric.ecommerce.models.Stock;
+import com.eric.ecommerce.services.DeliverySchedulePublisher;
 import com.eric.ecommerce.services.StockService;
 
 @RestController
 @RequestMapping("/stocks")
 public class StockController {
 	  @Autowired 
-      private StockService stockService;
-		
-		
+      private DeliverySchedulePublisher deliverySchedulePublisher;
+	
+	  @GetMapping("/{productId}")
+	  public void publishDeliverySchedule(@PathVariable("productId") long productId) {
+		  
+		  this.deliverySchedulePublisher.sendMessage(productId);
+			  
+		  
+	  }
+	  
 }
